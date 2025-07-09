@@ -1,15 +1,12 @@
-# Workstation Back-End
 
-This project uses environment variables to configure the database connection string and JWT signing key. Sensitive values have been removed from the committed `appsettings.json` files.
 
-## Configuration
+This project uses Entity Framework Core migrations. To add or update the
+database schema locally run:
 
-A template configuration file is provided at `workstation-back-end/appsettings.Template.json`. Copy this file to `appsettings.json` (or `appsettings.Development.json`) and replace the placeholder values, or set the following environment variables:
+```bash
+dotnet ef migrations add <MigrationName> -o Migrations
+dotnet ef database update
+```
 
-- `ConnectionStrings__DefaultConnection`
-- `Jwt__Key`
-
-### Render deployment
-
-When deploying to [Render](https://render.com), open your service, go to **Environment** and add the variables listed above. The application will read them at runtime.
-
+The application automatically applies pending migrations at startup via
+`Database.Migrate()`.
