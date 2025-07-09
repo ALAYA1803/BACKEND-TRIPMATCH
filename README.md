@@ -1,4 +1,4 @@
-## Database Migrations
+
 
 This project uses Entity Framework Core migrations. To add or update the
 database schema locally run:
