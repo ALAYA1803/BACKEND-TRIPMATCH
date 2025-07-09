@@ -211,12 +211,12 @@ app.UseSwaggerUI();
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<TripMatchContext>();
-    context.Database.EnsureCreated();
+    // Apply pending migrations at startup
+    context.Database.Migrate();
 }
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseCors("_myAllowSpecificOrigins");
 app.UseAuthorization();
-app.MapControllers();
-app.Run();
+app.MapControllers();app.Run();
